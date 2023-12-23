@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import emailjs from "@emailjs/browser";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useRef, useState } from "react";
@@ -26,50 +27,50 @@ const Contact = () => {
     setLoading(true);
     setCurrentAnimation("hit");
 
-    // emailjs
-    //   .send(
-    //     import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-    //     import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-    //     {
-    //       from_name: form.name,
-    //       to_name: "JavaScript Mastery",
-    //       from_email: form.email,
-    //       to_email: "sujata@jsmastery.pro",
-    //       message: form.message,
-    //     },
-    //     import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-    //   )
-    //   .then(
-    //     () => {
-    //       setLoading(false);
-    //       showAlert({
-    //         show: true,
-    //         text: "Thank you for your message 😃",
-    //         type: "success",
-    //       });
+    emailjs
+      .send(
+        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        {
+          from_name:"Faisal Khan",
+          to_name: form.name,
+          from_email: form.email,
+          to_email: "faisalkhanisrar@gmail.com",
+          message: form.message,
+        },
+        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          setLoading(false);
+          showAlert({
+            show: true,
+            text: "Thank you for your message 😃",
+            type: "success",
+          });
 
-    //       setTimeout(() => {
-    //         hideAlert(false);
-    //         setCurrentAnimation("idle");
-    //         setForm({
-    //           name: "",
-    //           email: "",
-    //           message: "",
-    //         });
-    //       }, [3000]);
-    //     },
-    //     (error) => {
-    //       setLoading(false);
-    //       console.error(error);
-    //       setCurrentAnimation("idle");
+          setTimeout(() => {
+            hideAlert(false);
+            setCurrentAnimation("idle");
+            setForm({
+              name: "",
+              email: "",
+              message: "",
+            });
+          }, [3000]);
+        },
+        (error) => {
+          setLoading(false);
+          console.error(error);
+          setCurrentAnimation("idle");
 
-    //       showAlert({
-    //         show: true,
-    //         text: "I didn't receive your message 😢",
-    //         type: "danger",
-    //       });
-    //     }
-    //   );
+          showAlert({
+            show: true,
+            text: "I didn't receive your message 😢",
+            type: "danger",
+          });
+        }
+      );
   };
 
   return (
